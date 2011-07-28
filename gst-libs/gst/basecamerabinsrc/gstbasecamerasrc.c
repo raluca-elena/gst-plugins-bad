@@ -241,9 +241,9 @@ gst_base_camera_src_start_capture (GstBaseCameraSrc * src)
     return;
   }
 
-  src->capturing = TRUE;
-  g_object_notify (G_OBJECT (src), "ready-for-capture");
   if (klass->start_capture (src)) {
+    src->capturing = TRUE;
+    g_object_notify (G_OBJECT (src), "ready-for-capture");
     GST_DEBUG_OBJECT (src, "Capture started");
   } else {
     src->capturing = FALSE;
